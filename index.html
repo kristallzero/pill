@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pill</title>
+  <link rel="stylesheet" href="materialize/css/materialize.min.css">
+  <link href="materialize/css/icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper blue darken-4">
+      <a href="/" class="brand-logo center">Pill</a>
+      <a href="/" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>Email: <span style="user-select: all">testmail123@gmail.com</span></li>
+        <li><a href="/logout" class="red-text text-darken-1 logout">log out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile">
+    <li class="email">Email: <span>testmail123@gmail.com</span></li>
+    <li><a href="/logout" class="red-text text-darken-1 waves-effect logout">log out</a></li>
+  </ul>
+
+  <div class="container">
+    <ul class="collection js-pill-list">
+      <li class="collection-item">
+        <p>Название таблетки: <span class="js-pill-name">test</span></p>
+        <p>Дозировка: <span class="js-pill-dosage">15</span> мг</p>
+        <p>Прием: <span class="js-pill-taking">Через 15 минут после завтрака, ужина</span>
+        </p>
+        <div class="pill-btns">
+          <i class="material-icons small js-edit waves-effect">edit</i>
+          <i class="material-icons small js-delete waves-effect">delete</i>
+        </div>
+      </li>
+      <li class="collection-item">
+        <p>Название таблетки: <span class="js-pill-name">test2</span></p>
+        <p>Дозировка: <span class="js-pill-dosage">20</span>мг</p>
+        <p>Прием: <span class="js-pill-taking">Во время еды</span>
+        </p>
+        <div class="pill-btns">
+          <i class="material-icons small js-edit waves-effect">edit</i>
+          <i class="material-icons small js-delete waves-effect">delete</i>
+        </div>
+      </li>
+      <li class="collection-item">
+        <p>Название таблетки: <span class="js-pill-name">test3</span></p>
+        <p>Дозировка: <span class="js-pill-dosage">1</span> мг</p>
+        <p>Прием: <span class="js-pill-taking">2 раза за день</span>
+        </p>
+        <div class="pill-btns">
+          <i class="material-icons small js-edit waves-effect">edit</i>
+          <i class="material-icons small js-delete waves-effect">delete</i>
+        </div>
+      </li>
+    </ul>
+
+    <p data-target="modal1" class="btn-floating btn-large waves-effect waves-light blue darken-4 right modal-trigger"
+      id="btn-add">
+      <i class="material-icons">add</i>
+    </p>
+
+    <div id="modal1" class="modal">
+      <form action="/add" method="post" class="add-form">
+        <div class="modal-content">
+          <div class="row">
+            <div class="input-field col l6 m6 s6">
+              <i class="material-icons prefix">reorder</i>
+              <input id="pill_title" type="text" name="pill_title" class="validate" required>
+              <label for="pill_title">Таблетка</label>
+              <span class="helper-text" data-error="Введите название таблетки"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">filter_1</i>
+              <input id="pill_dosage" type="number" name="pill_dosage" class="validate" min="1" required>
+              <label for="pill_dosage">Дозировка (мг)</label>
+              <span class="helper-text" data-error="Введите дозировку"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">restaurant_menu</i>
+              <select name="pill_taking">
+                <option value="before">До еды</option>
+                <option value="while_eating">Во время еды</option>
+                <option value="after">После еды</option>
+                <option value="any">В любое время</option>
+              </select>
+              <label>Прием</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">schedule</i>
+              <input type="number" name="pill_time" id="pill_time" class="validate" min="0" max="60" required>
+              <label for="pill_time">Время (мин)</label>
+              <span class="helper-text" data-error="Введите время от 0 до 60 минут"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">restaurant</i>
+              
+              <select name="pill_eating" multiple class="validate" required>
+                <option value="any" selected>Любой</option>
+                <option value="breakfast">Завтрак</option>
+                <option value="lunch">Обед</option>
+                <option value="dinner">Ужин</option>
+              </select>
+              <label>Приемы пищи</label>
+              <span class="helper-text" data-error="Выбирите прием пищи"></span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" id="modalclick">
+          <button class="waves-effect waves-gray btn-flat btn-add">Добавить</button>
+          <i class="modal-close waves-effect waves-gray btn-flat material-icons small prefix">cancel</i>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="materialize/js/materialize.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>

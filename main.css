@@ -1,0 +1,86 @@
+@import url(fonts.css);
+
+body {
+  font-family: 'roboto';
+  user-select: none;
+}
+
+.logout {
+  font-weight: bold;
+}
+
+.logout:hover {
+  background-color: #1a237e;
+}
+
+.sidenav .logout {
+  background-color: #e53935;
+  color: rgb(255, 255, 255) !important;
+}
+
+.sidenav .logout:hover {
+  background-color: #d32f2f;
+  color: rgb(255, 255, 255) !important;
+}
+
+.email {
+  padding: 0 32px;
+}
+
+.email>span {
+  user-select: all;
+}
+
+.collection-item span {
+  font-weight: 500;
+}
+
+.secondary-content {
+  display: flex;
+  justify-content: space-between;
+  width: 70px;
+  margin-bottom: 10px;
+}
+
+.pill-btns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.js-edit,
+.js-delete {
+  cursor: pointer;
+}
+
+.js-edit {
+  color: rgb(38, 166, 154);
+}
+
+.js-edit:hover {
+  color: rgb(52, 221, 204);
+}
+
+.js-delete {
+  color: #d32f2f;
+}
+
+.js-delete:hover {
+  color: #ff3939;
+}
+
+.modal-close {
+  color: #1a237e;
+}
+
+.modal-close:hover,
+.btn-add:hover {
+  color: #3545f0;
+}
+
+#modal1 {
+  max-height: 100%;
+}
+
+.modal .modal-content {
+  padding: 15px;
+}
