@@ -1,0 +1,10 @@
+GET / - load page (if not auth redirect to /login)
+POST /add - create a pill
+
+DELETE /remove/:id - delete a pill
+PATCH /edit/:id - edit a task
+
+GET /login - load login page
+POST /login - login
+POST /register - register
+POST /logout - logout

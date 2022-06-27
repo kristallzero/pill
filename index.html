@@ -70,7 +70,7 @@
     <div id="modal1" class="modal">
       <form action="/add" method="post" class="add-form">
         <div class="modal-content">
-          <div class="row">
+          <div class="row" id="pill-title-block">
             <div class="input-field col l6 m6 s6">
               <i class="material-icons prefix">reorder</i>
               <input id="pill_title" type="text" name="pill_title" class="validate" required>
@@ -78,7 +78,7 @@
               <span class="helper-text" data-error="Введите название таблетки"></span>
             </div>
           </div>
-          <div class="row">
+          <div class="row" id="js-pill-dosage-block">
             <div class="input-field col s12">
               <i class="material-icons prefix">filter_1</i>
               <input id="pill_dosage" type="number" name="pill_dosage" class="validate" min="1" required>
@@ -86,10 +86,10 @@
               <span class="helper-text" data-error="Введите дозировку"></span>
             </div>
           </div>
-          <div class="row">
+          <div class="row" id="pill-taking-block">
             <div class="input-field col s12">
               <i class="material-icons prefix">restaurant_menu</i>
-              <select name="pill_taking">
+              <select name="pill_taking" id="pill_taking">
                 <option value="before">До еды</option>
                 <option value="while_eating">Во время еды</option>
                 <option value="after">После еды</option>
@@ -98,7 +98,7 @@
               <label>Прием</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row" id="pill-time-block">
             <div class="input-field col s12">
               <i class="material-icons prefix">schedule</i>
               <input type="number" name="pill_time" id="pill_time" class="validate" min="0" max="60" required>
@@ -106,11 +106,11 @@
               <span class="helper-text" data-error="Введите время от 0 до 60 минут"></span>
             </div>
           </div>
-          <div class="row">
+          <div class="row" id="pill-eating-block">
             <div class="input-field col s12">
               <i class="material-icons prefix">restaurant</i>
-              
-              <select name="pill_eating" multiple class="validate" required>
+
+              <select name="pill_eating" id="pill_eating" multiple class="validate" required>
                 <option value="any" selected>Любой</option>
                 <option value="breakfast">Завтрак</option>
                 <option value="lunch">Обед</option>
@@ -130,7 +130,9 @@
   </div>
 
   <script src="materialize/js/materialize.min.js"></script>
-  <script src="index.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/pills.js"></script>
+  <script src="js/add-form.js"></script>
 </body>
 
 </html>
