@@ -1,22 +1,5 @@
 "use strict";
 
-const formBtn = document.querySelector('#modalclick button');
-const form = {
-  title: document.getElementById('pill_title'),
-  dosage: document.getElementById('pill_dosage'),
-  taking: M.FormSelect.getInstance(document.getElementById('pill_taking')),
-  time: document.getElementById('pill_time'),
-  eating: M.FormSelect.getInstance(document.getElementById('pill_eating'))
-};
-
-
-const pillTaking = document.getElementById('pill-taking-block');
-const pillTime = document.getElementById('pill-time-block');
-const pillEating = document.getElementById('pill-eating-block');
-
-const pillTakingInput = pillTaking.querySelector('input');
-const pillTakingVariants = document.querySelector('#pill-taking-block ul').children;
-
 const inputsToShow = {
   'До еды': function () {
     pillTime.classList.remove('hide');
@@ -48,13 +31,20 @@ formBtn.onclick = (e) => {
   const pill = {
     title: form.title.value,
     dosage: form.dosage.value,
-    taking: form.taking.getSelectedValues()[0],
+    taking: {
+      'До еды': 'before',
+      'Во время еды': 'while_eating',
+      'После еды': 'after',
+      'В любое время': 'any'
+    }[form.taking.input.value],
     time: form.time.value,
     eating: form.eating.getSelectedValues()
   };
+  // get id
   fetch('/add', {method: 'POST', body: JSON.stringify(pill), headers: {'content-type': 'application/json'}})
     .then(() => {
       modal.close();
+      pill.id = Math.floor(Math.random() * 1000);
       createPill(pill);
     });
 }

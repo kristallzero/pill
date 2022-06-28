@@ -43,7 +43,17 @@
       <li class="collection-item">
         <p>Название таблетки: <span class="js-pill-name">test2</span></p>
         <p>Дозировка: <span class="js-pill-dosage">20</span>мг</p>
-        <p>Прием: <span class="js-pill-taking">Во время еды</span>
+        <p>Прием: <span class="js-pill-taking">Во время обеда</span>
+        </p>
+        <div class="pill-btns">
+          <i class="material-icons small js-edit waves-effect">edit</i>
+          <i class="material-icons small js-delete waves-effect">delete</i>
+        </div>
+      </li>
+      <li class="collection-item">
+        <p>Название таблетки: <span class="js-pill-name">test5</span></p>
+        <p>Дозировка: <span class="js-pill-dosage">45</span>мг</p>
+        <p>Прием: <span class="js-pill-taking">Сразу до любого приема пищи</span>
         </p>
         <div class="pill-btns">
           <i class="material-icons small js-edit waves-effect">edit</i>
@@ -53,7 +63,7 @@
       <li class="collection-item">
         <p>Название таблетки: <span class="js-pill-name">test3</span></p>
         <p>Дозировка: <span class="js-pill-dosage">1</span> мг</p>
-        <p>Прием: <span class="js-pill-taking">2 раза за день</span>
+        <p>Прием: <span class="js-pill-taking">В любое время</span>
         </p>
         <div class="pill-btns">
           <i class="material-icons small js-edit waves-effect">edit</i>
@@ -131,6 +141,44 @@
 
   <script src="materialize/js/materialize.min.js"></script>
   <script src="js/index.js"></script>
+  <script>
+    // SSR
+    const pills = [
+      {
+        title: 'test',
+        dosage: 15,
+        taking: 'after',
+        time: 15,
+        eating: ['breakfast', 'lunch'],
+        id: 0
+      },
+      {
+        title: 'test2',
+        dosage: 20,
+        taking: 'while_eating',
+        time: 0,
+        eating: ['lunch'],
+        id: 1
+      },
+      {
+        title: 'test5',
+        dosage: 45,
+        taking: 'before',
+        time: 0,
+        eating: ['any'],
+        id: 2
+      },
+      {
+        title: 'test3',
+        dosage: 1,
+        taking: 'any',
+        time: 0,
+        eating: [],
+        id: 3
+      }
+    ];
+  </script>
+  <script src="js/pill-handlers.js"></script>
   <script src="js/pills.js"></script>
   <script src="js/add-form.js"></script>
 </body>
