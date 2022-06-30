@@ -1,0 +1,13 @@
+User: 
+  email: String(required),
+  password: String(required),
+  pills: [ObjectId(Pill)]
+
+
+Pills:
+  title: String(required),
+  dosage: Number(required),
+  taking: String(required),
+  time: Number(required),
+  eating: [String(at least one)]
+  
