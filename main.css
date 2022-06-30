@@ -84,3 +84,7 @@ body {
 .modal .modal-content {
   padding: 15px;
 }
+
+.hide {
+  display: none;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ре</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="materialize/css/materialize.min.css">
+  <link href="materialize/css/icons.css" rel="stylesheet">
+</head>
+
+<body style="background-color: teal">
+  <div>
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col l3 m3 s12"></div>
+          <div class="col l6 m6 s12">
+            <form action="/register" method="POST">
+              <div class="card-panel">
+                <h5 class="center">Регистрация</h5>
+
+                <div class="input-field">
+                  <i class="material-icons prefix">email</i>
+                  <input type="email" name="email" id="email" class="validate" required>
+                  <label for="email">Почта</label>
+                  <span class="helper-text" data-error="Введите почту"></span>
+                </div>
+
+                <div class="input-field">
+                  <i class="material-icons prefix">lock</i>
+                  <input type="password" name="password" id="password" required>
+                  <label for="password">Пароль</label>
+                  <span class="helper-text" data-error="Введите пароль"></span>
+                </div>
+
+                <div class="input-field">
+                  <i class="material-icons prefix">vpn_key</i>
+                  <input type="password" name="check" id="check" required>
+                  <label for="check">Пароль еще раз</label>
+                  <span class="helper-text" data-error="Введите пароль еще раз"></span>
+                </div>
+
+                <p class="right">Есть профиль? <a href="#login" class="modal-trigger">Войти</a></p>
+                <input type="submit" value="создать профиль" class="btn left col s12">
+
+                <div class="clearfix"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-fixed-footer" id="login">
+    <form action="/login" method="POST">
+      <div class="modal-conent">
+        <div class="container">
+          <h5 class="center">Вход</h5>
+          <div class="row">
+
+            <div class="col m12 s12">
+              <div class="input-field">
+                <i class="material-icons prefix">person</i>
+                <input type="email" name="email" id="lemail" required>
+                <label for="lemail">Почта</label>
+                <span class="helper-text" data-error="Введите почту"></span>
+              </div>
+
+              <div class="input-field">
+                <i class="material-icons prefix">lock</i>
+                <input type="password" name="password" id="lpassword" required>
+                <label for="lpassword">Пароль</label>
+                <span class="helper-text" data-error="Введите пароль"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="container">
+          <input type="submit" value="войти" class="btn pulse">
+          <input type="button" value="закрыть" class="btn modal-close red">
+        </div>
+      </div>
+  </div>
+  </form>
+  </div>
+
+  <script src="materialize/js/materialize.min.js"></script>
+  <script>
+    M.Modal.init(document.querySelectorAll(".modal"));
+  </script>
+</body>
+
+</html>

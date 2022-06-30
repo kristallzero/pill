@@ -18,14 +18,14 @@
       <a href="/" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>Email: <span style="user-select: all">testmail123@gmail.com</span></li>
-        <li><a href="/logout" class="red-text text-darken-1 logout">log out</a></li>
+        <li><a href="/reg.html" class="red-text text-darken-1 logout">Выход</a></li>
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav" id="mobile">
     <li class="email">Email: <span>testmail123@gmail.com</span></li>
-    <li><a href="/logout" class="red-text text-darken-1 waves-effect logout">log out</a></li>
+    <li><a href="/reg.html" class="red-text text-darken-1 waves-effect logout">Выход</a></li>
   </ul>
 
   <div class="container">
@@ -42,8 +42,18 @@
       </li>
       <li class="collection-item">
         <p>Название таблетки: <span class="js-pill-name">test2</span></p>
-        <p>Дозировка: <span class="js-pill-dosage">20</span>мг</p>
-        <p>Прием: <span class="js-pill-taking">Во время еды</span>
+        <p>Дозировка: <span class="js-pill-dosage">20</span> мг</p>
+        <p>Прием: <span class="js-pill-taking">Во время обеда</span>
+        </p>
+        <div class="pill-btns">
+          <i class="material-icons small js-edit waves-effect">edit</i>
+          <i class="material-icons small js-delete waves-effect">delete</i>
+        </div>
+      </li>
+      <li class="collection-item">
+        <p>Название таблетки: <span class="js-pill-name">test5</span></p>
+        <p>Дозировка: <span class="js-pill-dosage">45</span> мг</p>
+        <p>Прием: <span class="js-pill-taking">Сразу до любого приема пищи</span>
         </p>
         <div class="pill-btns">
           <i class="material-icons small js-edit waves-effect">edit</i>
@@ -53,7 +63,7 @@
       <li class="collection-item">
         <p>Название таблетки: <span class="js-pill-name">test3</span></p>
         <p>Дозировка: <span class="js-pill-dosage">1</span> мг</p>
-        <p>Прием: <span class="js-pill-taking">2 раза за день</span>
+        <p>Прием: <span class="js-pill-taking">В любое время</span>
         </p>
         <div class="pill-btns">
           <i class="material-icons small js-edit waves-effect">edit</i>
@@ -70,7 +80,7 @@
     <div id="modal1" class="modal">
       <form action="/add" method="post" class="add-form">
         <div class="modal-content">
-          <div class="row">
+          <div class="row" id="pill-title-block">
             <div class="input-field col l6 m6 s6">
               <i class="material-icons prefix">reorder</i>
               <input id="pill_title" type="text" name="pill_title" class="validate" required>
@@ -78,7 +88,7 @@
               <span class="helper-text" data-error="Введите название таблетки"></span>
             </div>
           </div>
-          <div class="row">
+          <div class="row" id="js-pill-dosage-block">
             <div class="input-field col s12">
               <i class="material-icons prefix">filter_1</i>
               <input id="pill_dosage" type="number" name="pill_dosage" class="validate" min="1" required>
@@ -86,10 +96,10 @@
               <span class="helper-text" data-error="Введите дозировку"></span>
             </div>
           </div>
-          <div class="row">
+          <div class="row" id="pill-taking-block">
             <div class="input-field col s12">
               <i class="material-icons prefix">restaurant_menu</i>
-              <select name="pill_taking">
+              <select name="pill_taking" id="pill_taking">
                 <option value="before">До еды</option>
                 <option value="while_eating">Во время еды</option>
                 <option value="after">После еды</option>
@@ -98,7 +108,7 @@
               <label>Прием</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row" id="pill-time-block">
             <div class="input-field col s12">
               <i class="material-icons prefix">schedule</i>
               <input type="number" name="pill_time" id="pill_time" class="validate" min="0" max="60" required>
@@ -106,11 +116,11 @@
               <span class="helper-text" data-error="Введите время от 0 до 60 минут"></span>
             </div>
           </div>
-          <div class="row">
+          <div class="row" id="pill-eating-block">
             <div class="input-field col s12">
               <i class="material-icons prefix">restaurant</i>
-              
-              <select name="pill_eating" multiple class="validate" required>
+
+              <select name="pill_eating" id="pill_eating" multiple class="validate" required>
                 <option value="any" selected>Любой</option>
                 <option value="breakfast">Завтрак</option>
                 <option value="lunch">Обед</option>
@@ -130,7 +140,47 @@
   </div>
 
   <script src="materialize/js/materialize.min.js"></script>
-  <script src="index.js"></script>
+  <script src="js/variables.js"></script>
+  <script>
+    // SSR
+    const pills = [
+      {
+        title: 'test',
+        dosage: 15,
+        taking: 'after',
+        time: 15,
+        eating: ['breakfast', 'lunch'],
+        id: 0
+      },
+      {
+        title: 'test2',
+        dosage: 20,
+        taking: 'while_eating',
+        time: 0,
+        eating: ['lunch'],
+        id: 1
+      },
+      {
+        title: 'test5',
+        dosage: 45,
+        taking: 'before',
+        time: 0,
+        eating: ['any'],
+        id: 2
+      },
+      {
+        title: 'test3',
+        dosage: 1,
+        taking: 'any',
+        time: 0,
+        eating: [],
+        id: 3
+      }
+    ];
+  </script>
+  <script src="js/pill-handlers.js"></script>
+  <script src="js/pills.js"></script>
+  <script src="js/add-form.js"></script>
 </body>
 
 </html>
