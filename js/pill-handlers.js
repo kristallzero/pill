@@ -33,8 +33,5 @@ function editHandler(pillObj, pillElement) {
 }
 
 function deleteHandler(id, pillElement) {
-  fetch(`/remove?id=${id}`, { method: 'DELETE' })
-    .then(() => {
-      pillList.removeChild(pillElement);
-    });
+  pillList.removeChild(pillElement);
 }
