@@ -50,14 +50,11 @@ function addTaskHandler(e) {
     time: form.time.value,
     eating: form.eating.getSelectedValues()
   };
-  // get id
-  fetch('/add', { method: 'POST', body: JSON.stringify(pill), headers: { 'content-type': 'application/json' } })
-    .then(() => {
-      pill.id = Math.floor(Math.random() * 1000);
-      createPill(pill);
-      modal.close();
-      clearForm();
-    });
+
+  pill.id = Math.floor(Math.random() * 1000);
+  createPill(pill);
+  modal.close();
+  clearForm();
 }
 
 function updateTaskHandler(e, pillObj, pillElement) {
@@ -68,13 +65,10 @@ function updateTaskHandler(e, pillObj, pillElement) {
   pillObj.time = form.time.value;
   pillObj.eating = form.eating.getSelectedValues();
 
-  fetch(`edit?id=${pillObj.id}`, { method: 'PATCH', body: JSON.stringify(pillObj), headers: { 'content-type': 'application/json' } })
-    .then(() => {
-      updatePill(pillObj, pillElement);
-      formBtn.onclick = addTaskHandler;
-      modal.close();
-      clearForm();
-    });
+  updatePill(pillObj, pillElement);
+  formBtn.onclick = addTaskHandler;
+  modal.close();
+  clearForm();
 }
 
 function checkForm(e) {
