@@ -36,3 +36,7 @@ function pillEatingHandler() {
 }
 
 formBtn.onclick = addTaskHandler;
+document.querySelector('#btn-add').onclick = () => {
+  formBtn.onclick = addTaskHandler;
+  clearForm();
+};
