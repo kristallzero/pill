@@ -52,12 +52,12 @@ function addTaskHandler(e) {
     eating: Array.from(form.eating.el).filter(el => el.selected).map(el => el.value)
   };
 
-  if (!pill.eating.length) pill.eating = ['any'];
+  if (!pill.eating.length || pill.eating.includes('any')) pill.eating = ['any'];
   fetch('/add', { method: 'POST', body: JSON.stringify(pill), headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': csrf } })
     .then(res => res.json())
     .then((data) => {
       if (data.error) throw new Error(data.error);
-      pill._id = data.id; 
+      pill._id = data.id;
       createPill(pill);
       modal.close();
       clearForm();
@@ -69,12 +69,15 @@ function updateTaskHandler(e, pillObj, pillElement) {
   pillObj.title = form.title.value;
   pillObj.dosage = +form.dosage.value;
   pillObj.taking = Array.from(form.taking.el).find(el => el.selected).value;
-  pillObj.time = form.time.value;
+  pillObj.time = +form.time.value;
   pillObj.eating = form.eating.getSelectedValues();
+
+  if (!pillObj.eating.length || pillObj.eating.includes('any'))
+    pillObj.eating = ['any'];
 
   fetch(`edit?id=${pillObj._id}`, { method: 'PATCH', body: JSON.stringify(pillObj), headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': csrf } })
     .then(res => res.json())
-    .then(({error}) => {
+    .then(({ error }) => {
       if (error) throw new Error(error)
       updatePill(pillObj, pillElement);
       formBtn.onclick = addTaskHandler;

@@ -22,7 +22,7 @@ function pillEatingHandler() {
     for (let i = 1; i < pillEatingVartiants.children.length; i++) {
       pillEatingVartiants.children[i].classList.add('hide');
       pillEatingVartiants.children[i].querySelector('input').checked = false;
-      pillEatingVartiants.children[i].classList.remove('selected'); 
+      pillEatingVartiants.children[i].classList.remove('selected');
       form.eating.el[i].selected = false;
     }
     form.eating.input.value = pillEatingVartiants.children[0].textContent;
@@ -36,3 +36,7 @@ function pillEatingHandler() {
 }
 
 formBtn.onclick = addTaskHandler;
+document.querySelector('#btn-add').onclick = () => {
+  formBtn.onclick = addTaskHandler;
+  clearForm();
+}
