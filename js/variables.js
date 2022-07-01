@@ -51,7 +51,7 @@ function addTaskHandler(e) {
     time: form.time.value,
     eating: Array.from(form.eating.el).filter(el => el.selected).map(el => el.value)
   };
-
+  if (!pill.eating.length) pill.eating = ['any'];
   pill.id = Math.floor(Math.random() * 1000);
   createPill(pill);
   modal.close();
