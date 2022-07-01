@@ -48,13 +48,16 @@ function addTaskHandler(e) {
     title: form.title.value,
     dosage: form.dosage.value,
     taking: Array.from(form.taking.el).find(el => el.selected).value,
-    time: form.time.value,
+    time: +form.time.value,
     eating: Array.from(form.eating.el).filter(el => el.selected).map(el => el.value)
   };
-  // get id
-  fetch('/add', { method: 'POST', body: JSON.stringify(pill), headers: { 'content-type': 'application/json' } })
-    .then(() => {
-      pill.id = Math.floor(Math.random() * 1000);
+
+  if (!pill.eating.length) pill.eating = ['any'];
+  fetch('/add', { method: 'POST', body: JSON.stringify(pill), headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': csrf } })
+    .then(res => res.json())
+    .then((data) => {
+      if (data.error) throw new Error(data.error);
+      pill._id = data.id; 
       createPill(pill);
       modal.close();
       clearForm();
@@ -69,8 +72,10 @@ function updateTaskHandler(e, pillObj, pillElement) {
   pillObj.time = form.time.value;
   pillObj.eating = form.eating.getSelectedValues();
 
-  fetch(`edit?id=${pillObj.id}`, { method: 'PATCH', body: JSON.stringify(pillObj), headers: { 'content-type': 'application/json' } })
-    .then(() => {
+  fetch(`edit?id=${pillObj._id}`, { method: 'PATCH', body: JSON.stringify(pillObj), headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': csrf } })
+    .then(res => res.json())
+    .then(({error}) => {
+      if (error) throw new Error(error)
       updatePill(pillObj, pillElement);
       formBtn.onclick = addTaskHandler;
       modal.close();
@@ -101,4 +106,29 @@ function clearForm() {
   form.dosage.classList.remove('valid');
   form.time.nextElementSibling.classList.remove('active');
   form.time.classList.remove('valid');
+}
+
+function getPillTaking(taking, time, eating) {
+  if (taking === 'any') return 'В любое время';
+
+  let result = '';
+  if (taking === 'while_eating') {
+    result += 'Во время ';
+  } else if (taking === 'before') {
+    if (time === 0) result += 'Сразу до ';
+    else result += `За ${time} минут до `;
+  } else {
+    if (time === 0) result += 'Сразу после ';
+    else result += `Через ${time} минут после `
+  }
+  if (eating.includes('any')) result += 'любого приема пищи';
+  else {
+    const eatingItems = [];
+    if (eating.includes('breakfast')) eatingItems.push('завтрака');
+    if (eating.includes('lunch')) eatingItems.push('обеда');
+    if (eating.includes('dinner')) eatingItems.push('ужина');
+    result += eatingItems.join(', ');
+  }
+
+  return result;
 }

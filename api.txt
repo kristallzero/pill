@@ -4,7 +4,7 @@ POST /add - create a pill
 DELETE /remove?id - delete a pill
 PATCH /edit?id - edit a task
 
-GET /login - load login page
-POST /login - login
-POST /register - register
-POST /logout - logout
+GET /auth - load login page
+POST /auth/login - login
+POST /auth/register - register
+POST /auth/logout - logout

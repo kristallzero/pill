@@ -4,7 +4,8 @@
 for (let i = 0; i < pillList.children.length; i++) {
   const pill = pillList.children[i];
   pill.querySelector('.js-edit').onclick = () => editHandler(pills[i], pill);
-  pill.querySelector('.js-delete').onclick = () => deleteHandler(pills[i].id, pill);
+  pill.querySelector('.js-delete').onclick = () => deleteHandler(pills[i]._id, pill);
+  pill.querySelector('.js-pill-taking').textContent = getPillTaking(pills[i].taking, pills[i].time, pills[i].eating);
 }
 
 function editHandler(pillObj, pillElement) {
@@ -33,8 +34,10 @@ function editHandler(pillObj, pillElement) {
 }
 
 function deleteHandler(id, pillElement) {
-  fetch(`/remove?id=${id}`, { method: 'DELETE' })
-    .then(() => {
+  fetch(`/remove?id=${id}`, { method: 'DELETE', headers: { 'X-XSRF-TOKEN': csrf } })
+    .then(res => res.json())
+    .then(({error}) => {
+      if (error) throw new Error(error)
       pillList.removeChild(pillElement);
     });
 }

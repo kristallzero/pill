@@ -1,0 +1,60 @@
+<div id="modal1" class="modal">
+  <form action="/add" method="post" class="add-form">
+    <div class="modal-content">
+      <div class="row" id="pill-title-block">
+        <div class="input-field col l6 m6 s6">
+          <i class="material-icons prefix">reorder</i>
+          <input id="pill_title" type="text" name="pill_title" class="validate" required>
+          <label for="pill_title">Таблетка</label>
+          <span class="helper-text" data-error="Введите название таблетки"></span>
+        </div>
+      </div>
+      <div class="row" id="js-pill-dosage-block">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">filter_1</i>
+          <input id="pill_dosage" type="number" name="pill_dosage" class="validate" min="1" required>
+          <label for="pill_dosage">Дозировка (мг)</label>
+          <span class="helper-text" data-error="Введите дозировку"></span>
+        </div>
+      </div>
+      <div class="row" id="pill-taking-block">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">restaurant_menu</i>
+          <select name="pill_taking" id="pill_taking">
+            <option value="before">До еды</option>
+            <option value="while_eating">Во время еды</option>
+            <option value="after">После еды</option>
+            <option value="any">В любое время</option>
+          </select>
+          <label>Прием</label>
+        </div>
+      </div>
+      <div class="row" id="pill-time-block">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">schedule</i>
+          <input type="number" name="pill_time" id="pill_time" class="validate" min="0" max="60" required>
+          <label for="pill_time">Время (мин)</label>
+          <span class="helper-text" data-error="Введите время от 0 до 60 минут"></span>
+        </div>
+      </div>
+      <div class="row" id="pill-eating-block">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">restaurant</i>
+
+          <select name="pill_eating" id="pill_eating" multiple class="validate" required>
+            <option value="any">Любой</option>
+            <option value="breakfast" selected>Завтрак</option>
+            <option value="lunch">Обед</option>
+            <option value="dinner">Ужин</option>
+          </select>
+          <label>Приемы пищи</label>
+          <span class="helper-text" data-error="Выбирите прием пищи"></span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="modalclick">
+      <button class="waves-effect waves-gray btn-flat btn-add">Добавить</button>
+      <i class="modal-close waves-effect waves-gray btn-flat material-icons small prefix">cancel</i>
+    </div>
+  </form>
+</div>

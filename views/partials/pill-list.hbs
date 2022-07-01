@@ -1,0 +1,14 @@
+<ul class="collection js-pill-list">
+  {{#each pills}}
+  <li class="collection-item">
+    <p>Название таблетки: <span class="js-pill-name">{{title}}</span></p>
+    <p>Дозировка: <span class="js-pill-dosage">{{dosage}}</span> мг</p>
+    <p>Прием: <span class="js-pill-taking"></span>
+    </p>
+    <div class="pill-btns">
+      <i class="material-icons small js-edit waves-effect">edit</i>
+      <i class="material-icons small js-delete waves-effect">delete</i>
+    </div>
+  </li>
+  {{/each}}
+</ul>

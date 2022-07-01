@@ -1,0 +1,15 @@
+<nav>
+  <div class="nav-wrapper blue darken-4">
+    <a href="/" class="brand-logo center">Pill</a>
+    <a href="/" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>Email: <span style="user-select: all">{{email}}</span></li>
+    <li><a href="/auth/logout" class="red-text text-darken-1 logout">Выход</a></li>
+    </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile">
+  <li class="email">Email: <span>{{email}}</span></li>
+  <li><a href="/auth/logout" class="red-text text-darken-1 waves-effect logout">Выход</a></li>
+</ul>

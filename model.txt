@@ -8,6 +8,7 @@ Pills:
   title: String(required),
   dosage: Number(required),
   taking: String(required),
+  parsedTaking: String,
   time: Number(required),
   eating: [String(at least one)]
   
