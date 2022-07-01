@@ -48,10 +48,10 @@ function addTaskHandler(e) {
     title: form.title.value,
     dosage: form.dosage.value,
     taking: Array.from(form.taking.el).find(el => el.selected).value,
-    time: form.time.value,
+    time: +form.time.value,
     eating: Array.from(form.eating.el).filter(el => el.selected).map(el => el.value)
   };
-  if (!pill.eating.length) pill.eating = ['any'];
+  if (!pill.eating.length || pill.eating.includes('any')) pill.eating = ['any'];
   pill.id = Math.floor(Math.random() * 1000);
   createPill(pill);
   modal.close();
@@ -65,6 +65,9 @@ function updateTaskHandler(e, pillObj, pillElement) {
   pillObj.taking = Array.from(form.taking.el).find(el => el.selected).value;
   pillObj.time = form.time.value;
   pillObj.eating = form.eating.getSelectedValues();
+
+  if (!pillObj.eating.length || pillObj.eating.includes('any'))
+    pillObj.eating = ['any'];
 
   updatePill(pillObj, pillElement);
   formBtn.onclick = addTaskHandler;
