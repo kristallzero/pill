@@ -22,7 +22,8 @@ const pillTime = document.getElementById('pill-time-block');
 const pillEating = document.getElementById('pill-eating-block');
 
 const pillTakingInput = pillTaking.querySelector('input');
-const pillTakingVariants = document.querySelector('#pill-taking-block ul').children;
+const pillTakingVariants = form.taking.dropdownOptions.children;
+const pillEatingVartiants = form.eating.dropdownOptions;
 
 const inputsToShow = {
   'До еды': function () {
@@ -48,7 +49,7 @@ function addTaskHandler(e) {
     dosage: form.dosage.value,
     taking: Array.from(form.taking.el).find(el => el.selected).value,
     time: form.time.value,
-    eating: form.eating.getSelectedValues()
+    eating: Array.from(form.eating.el).filter(el => el.selected).map(el => el.value)
   };
   // get id
   fetch('/add', { method: 'POST', body: JSON.stringify(pill), headers: { 'content-type': 'application/json' } })
@@ -90,9 +91,10 @@ function clearForm() {
   form.taking.el.children[0].selected = true;
   form.taking.input.value = form.taking.el.children[0].textContent;
   form.time.value = '';
-  form.eating.input.value = '';
-  form.eating.el.children[0].selected = true;
-  Array.from(form.eating.el).slice(1).forEach(el => el.selected = false);
+  form.eating.input.value = form.eating.el[1].textContent;
+  Array.from(form.eating.el).forEach(el => el.selected = false);
+  form.eating.el.children[1].selected = true;
+  pillEatingHandler();
   form.title.nextElementSibling.classList.remove('active');
   form.title.classList.remove('valid');
   form.dosage.nextElementSibling.classList.remove('active');
