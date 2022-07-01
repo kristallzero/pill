@@ -51,8 +51,9 @@ function addTaskHandler(e) {
     time: +form.time.value,
     eating: Array.from(form.eating.el).filter(el => el.selected).map(el => el.value)
   };
-  if (!pill.eating.length || pill.eating.includes('any')) pill.eating = ['any'];
 
+  if (!pill.eating.length || pill.eating.includes('any')) pill.eating = ['any'];
+  
   fetch('/add', { method: 'POST', body: JSON.stringify(pill), headers: { 'content-type': 'application/json' } })
     .then(() => {
       pill.id = Math.floor(Math.random() * 1000);
